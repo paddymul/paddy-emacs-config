@@ -488,6 +488,10 @@ support for features needed by `python-mode'.")
      ;; builtins when they don't appear as object attributes
      (list (concat "\\([^. \t]\\|^\\)[ \t]*\\<\\(" kw3 "\\)\\>[ \n\t(]") 2
            'py-builtins-face)
+     ;; `as' but only in "import foo as bar"
+     '("[ \t]*\\(\\<from\\>.*\\)?\\<import\\>.*\\<\\(as\\)\\>" . 2)
+
+
      ;; block introducing keywords with immediately following colons.
      ;; Yes "except" is in both lists.
      (cons (concat "\\<\\(" kw2 "\\)[ \n\t(]") 1)
@@ -499,13 +503,80 @@ support for features needed by `python-mode'.")
      '("\\<def[ \t]+\\([a-zA-Z_]+[a-zA-Z0-9_]*\\)"
        1 font-lock-function-name-face)
      ;; pseudo-keywords
-     '("\\<\\(self\\|Ellipsis\\|True\\|False\\|None\\)\\>"
+     '("\\<\\(self\\|None\\|True\\|False\\|Ellipsis\\)\\>"
+;     '("\\<\\(self\\|Ellipsis\\|True\\|False\\|None\\)\\>"
        1 py-pseudo-keyword-face)
      ;; XXX, TODO, and FIXME tags
-     '("XXX\\|TODO\\|FIXME" 0 py-XXX-tag-face t)
+;     '("XXX\\|TODO\\|FIXME" 0 py-XXX-tag-face t)
      ))
   "Additional expressions to highlight in Python mode.")
-(put 'python-mode 'font-lock-defaults '(python-font-lock-keywords))
+;(put 'python-mode 'font-lock-defaults '(python-font-lock-keywords))
+
+(defconst py-font-lock-syntactic-keywords
+  ;; Make outer chars of matching triple-quote sequences into generic
+  ;; string delimiters.  Fixme: Is there a better way?
+  `((,(rx (or line-start buffer-start
+	      (not (syntax escape)))	; avoid escaped leading quote
+	  (group (optional (any "uUrR"))) ; prefix gets syntax property
+	  (optional (any "rR"))		  ; possible second prefix
+	  (group (syntax string-quote))   ; maybe gets property
+	  (backref 2)			  ; per first quote
+	  (group (backref 2)))		  ; maybe gets property
+     (1 (python-quote-syntax 1))
+     (2 (python-quote-syntax 2))
+     (3 (python-quote-syntax 3)))
+    ;; This doesn't really help.
+;;;     (,(rx (and ?\\ (group ?\n))) (1 " "))
+    ))
+
+(defun python-quote-syntax (n)
+  "Put `syntax-table' property correctly on triple quote.
+Used for syntactic keywords.  N is the match number (1, 2 or 3)."
+  ;; Given a triple quote, we have to check the context to know
+  ;; whether this is an opening or closing triple or whether it's
+  ;; quoted anyhow, and should be ignored.  (For that we need to do
+  ;; the same job as `syntax-ppss' to be correct and it seems to be OK
+  ;; to use it here despite initial worries.)  We also have to sort
+  ;; out a possible prefix -- well, we don't _have_ to, but I think it
+  ;; should be treated as part of the string.
+
+  ;; Test cases:
+  ;;  ur"""ar""" x='"' # """
+  ;; x = ''' """ ' a
+  ;; '''
+  ;; x '"""' x """ \"""" x
+  ;; Fixme:  """""" goes wrong (due to syntax-ppss not getting the string
+  ;; fence context).
+  (save-excursion
+    (goto-char (match-beginning 0))
+    (cond
+     ;; Consider property for the last char if in a fenced string.
+     ((= n 3)
+      (let* ((font-lock-syntactic-keywords nil)
+	     (syntax (syntax-ppss)))
+	(when (eq t (nth 3 syntax))	; after unclosed fence
+	  (goto-char (nth 8 syntax))	; fence position
+	  (skip-chars-forward "uUrR")	; skip any prefix
+	  ;; Is it a matching sequence?
+	  (if (eq (char-after) (char-after (match-beginning 2)))
+	      ;; XEmacs lacks string-to-syntax...
+	      (eval-when-compile (if (fboundp 'string-to-syntax)
+				     (string-to-syntax "|")
+				   '(15)))))))
+     ;; Consider property for initial char, accounting for prefixes.
+     ((or (and (= n 2)			; leading quote (not prefix)
+	       (= (match-beginning 1) (match-end 1))) ; prefix is null
+	  (and (= n 1)			; prefix
+	       (/= (match-beginning 1) (match-end 1)))) ; non-empty
+      (let ((font-lock-syntactic-keywords nil))
+	(unless (eq 'string (syntax-ppss-context (syntax-ppss)))
+	  (eval-when-compile (if (fboundp 'string-to-syntax)
+				 (string-to-syntax "|")
+			       '(15))))))
+     ;; Otherwise (we're in a non-matching string) the property is
+     ;; nil, which is OK.
+     )))
+
 
 ;; have to bind py-file-queue before installing the kill-emacs-hook
 (defvar py-file-queue nil
@@ -1190,12 +1261,26 @@ py-beep-if-tab-change\t\tring the bell if `tab-width' is changed"
   (make-local-variable 'indent-line-function)
   (make-local-variable 'add-log-current-defun-function)
   (make-local-variable 'fill-paragraph-function)
+  (make-local-variable 'parse-sexp-lookup-properties)                      
+  (make-local-variable 'outline-regexp)                                    
+  (make-local-variable 'outline-level)                                     
+  (make-local-variable 'open-paren-in-column-0-is-defun-start) ; Emacs 21.4
+
+
   ;;
   (set-syntax-table py-mode-syntax-table)
+  (add-hook (make-local-hook 'font-lock-mode-hook)  
+	    'py-font-lock-mode-hook nil t)           
+
   (setq major-mode              'python-mode
         mode-name               "Python"
         local-abbrev-table      python-mode-abbrev-table
-        font-lock-defaults      '(python-font-lock-keywords)
+;        font-lock-defaults      '(python-font-lock-keywords)
+ 	font-lock-defaults      '(python-font-lock-keywords                
+				  nil nil nil nil                          
+				  (font-lock-syntactic-keywords            
+				   . py-font-lock-syntactic-keywords))     
+ 	parse-sexp-lookup-properties t                                     
         paragraph-separate      "^[ \t]*$"
         paragraph-start         "^[ \t]*$"
         require-final-newline   t
@@ -2021,6 +2106,7 @@ above."
   (if (or (/= (current-indentation) (current-column))
           (bolp)
           (py-continuation-line-p)
+
 ;         (not py-honor-comment-indentation)
 ;         (looking-at "#[^ \t\n]")      ; non-indenting #
           )
@@ -2158,23 +2244,61 @@ dedenting."
        ((py-continuation-line-p)
         (let ((startpos (point))
               (open-bracket-pos (py-nesting-level))
-              endpos searching found state cind cline)
+
+;              endpos searching found state cind cline)
+              endpos searching found state)
           (if open-bracket-pos
               (progn
-                (setq endpos (py-point 'bol))
-                (py-goto-initial-line)
-                (setq cind (current-indentation))
-                (setq cline cind)
-                (dolist (bp
-                         (nth 9 (save-excursion
-                                  (parse-partial-sexp (point) endpos)))
-                         cind)
-                  (if (search-forward "\n" bp t) (setq cline cind))
-                  (goto-char (1+ bp))
-                  (skip-chars-forward " \t")
-                  (setq cind (if (memq (following-char) '(?\n ?# ?\\))
-                                 (+ cline py-indent-offset)
-                               (current-column)))))
+
+
+
+                ;; (setq endpos (py-point 'bol))
+                ;; (py-goto-initial-line)
+                ;; (setq cind (current-indentation))
+                ;; (setq cline cind)
+                ;; (dolist (bp
+                ;;          (nth 9 (save-excursion
+                ;;                   (parse-partial-sexp (point) endpos)))
+                ;;          cind)
+                ;;   (if (search-forward "\n" bp t) (setq cline cind))
+                ;;   (goto-char (1+ bp))
+                ;;   (skip-chars-forward " \t")
+                ;;   (setq cind (if (memq (following-char) '(?\n ?# ?\\))
+                ;;                  (+ cline py-indent-offset)
+                ;;               (current-column))))) 
+
+
+
+		;; align with first item in list; else a normal                  
+		;; indent beyond the line with the open bracket                  
+		(goto-char (1+ open-bracket-pos)) ; just beyond bracket          
+		;; is the first list item on the same line?                      
+		(skip-chars-forward " \t")                                       
+		(if (null (memq (following-char) '(?\n ?# ?\\)))                 
+					; yes, so line up with it                
+		    (current-column)                                             
+		  ;; first list item on another line, or doesn't exist yet       
+		  (forward-line 1)                                               
+		  (while (and (< (point) startpos)                               
+			      (looking-at "[ \t]*[#\n\\\\]")) ; skip noise       
+		    (forward-line 1))                                            
+		  (if (and (< (point) startpos)                                  
+			   (/= startpos                                          
+			       (save-excursion                                   
+				 (goto-char (1+ open-bracket-pos))               
+				 (forward-comment (point-max))                   
+				 (point))))                                      
+		      ;; again mimic the first list item                         
+		      (current-indentation)                                      
+		    ;; else they're about to enter the first item                
+		    (goto-char open-bracket-pos)                                 
+		    (setq placeholder (point))                                   
+		    (py-goto-initial-line)                                       
+		    (py-goto-beginning-of-tqs                                    
+		     (save-excursion (nth 3 (parse-partial-sexp                  
+					     placeholder (point)))))             
+		    (+ (current-indentation) py-indent-offset))))                
+
             ;; else on backslash continuation line
             (forward-line -1)
             (if (py-continuation-line-p) ; on at least 3rd line in block
@@ -2707,7 +2831,23 @@ To mark the current `def', see `\\[py-mark-def-or-class]'."
              (looking-at start-re))
         (end-of-line))
     (if (re-search-backward start-re nil 'move count)
-        (goto-char (match-beginning 0)))))
+
+;;        (goto-char (match-beginning 0)))))
+	(goto-char (match-beginning 0))))                     
+  ;; We could be in a string, in which case, try again.      
+  (if (nth 8 (parse-partial-sexp (point-min) (point)))       
+      (py-beginning-of-def-or-class class count)))
+
+
+
+
+
+
+
+
+
+
+
 
 ;; Backwards compatibility
 (defalias 'beginning-of-python-def-or-class 'py-beginning-of-def-or-class)
@@ -2964,6 +3104,17 @@ pleasant."
                   (goto-char start)))))))
   (exchange-point-and-mark)
   (py-keep-region-active))
+
+
+
+(defun py-backward-kill-nomenclature (arg)                                   
+  "Kill characters forward until encountering the end of a word.             
+With argument, do this that many times."                                     
+  (interactive "p")                                                          
+  (kill-region (point) (progn (py-backward-into-nomenclature arg) (point)))) 
+
+
+
 
 ;; ripped from cc-mode
 (defun py-forward-into-nomenclature (&optional arg)
@@ -3488,7 +3639,8 @@ If nesting level is zero, return nil."
   "Go to the beginning of the triple quoted string we find ourselves in.
 DELIM is the TQS string delimiter character we're searching backwards
 for."
-  (let ((skip (and delim (make-string 1 delim)))
+;;  (let ((skip (and delim (make-string 1 delim)))
+  (let ((skip (and delim (not (eq delim t)) (make-string 1 delim)))
         (continue t))
     (when skip
       (save-excursion
