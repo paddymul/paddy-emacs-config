@@ -169,7 +169,7 @@
           '(lambda ()
              (ropemacs-mode)
              (flymake-mode)))
-(load-file (expand-file-name "~/me/emacs/python-mode.el"))
+(load-file (expand-file-name "~/.emacs.d/vendor/python-mode.el"))
 ;(setq exec-path (append exec-path "/Library/Frameworks/Python.framework/Versions/2.6/bin/ipython"))
 
 (load-file (expand-file-name "~/me/emacs/ipython.el"))

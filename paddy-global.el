@@ -32,6 +32,10 @@
 (setq-default indent-tabs-mode nil)
 (read-abbrev-file (expand-file-name "~/me/emacs/.abbrev_defs"))
 (load-file (expand-file-name "~/me/emacs/highlight-current-line.el"))
+
+
+
+
 (require 'highlight-current-line)
 
 (provide 'paddy-global)
