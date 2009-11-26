@@ -1,0 +1,70 @@
+
+
+
+* emacs annoyances
+** comint modes
+*** one keypress for debugging (pdb)
+add abbrevs for pdb mode 
+pressing s means s+return
+that wont't work because you couldn't type "sort"
+remap keys so that C-s sends "s+return"
+*** really long pathnames
+replace ~/basedir with colored {{BASEDIR}}/  or something similar
+replace site_packages with something similar
+
+** compile mode
+*** pdbtrack doesn't work
+it does on scott's machine
+
+** shell-mode
+** 
+** general text editting
+*** moving groups of lines
+Move active region up or down
+META SHIFT P  should move region up
+META SHIFT N  should move regiond down
+
+*** navigating through text in larger jumps
+make moving through text behave like a binary search 
+going up and down lines to slow
+make SHIFT C-n  move up two lines
+next SHIFT C-N  move up 4 lines
+next SHIFT C-N  move up 8 lines
+next c-n  move up 8 lines
+any other input
+
+c-n move up line
+SHIFT C-N move up two lines
+
+*** make *-word commands stop at line breaks
+   Make '(backword-word forward-word backward-kill-word and forward-kill-word)
+stop at line endings 
+
+*** command to insert current buffer filename into buffer
+Add function to insert complete buffer path into current buffer or kill-ring
+preferably kill-ring  that way 
+also have an anything shortcut so that you can type maybe 
+H-M f and you get an anything buffer that searches through file names
+and on return inserts taht filename into the current buffer
+
+
+*** copy and paste in read-only-made
+when in read-only mode I can't kill text into buffer
+set it up so that in read-only mode, kill is remapped to non destructive copy to kill-ring 
+
+this works when in view mode via 
+a view-mode-hook
+
+it doesn't work when a buffer is marked read only
+
+ideas
+
+I probably will need to use defadvice to make this work
+defadvice on kill-line kill-region  -- would prefer not to
+will slow down kill-line and kill-region
+
+would prefer defadvice on whatever function causes a buffer to go into read only mode
+
+a defadvice or hook on buffer open won't always accomplish what I desire
+
+*** highlight current keyword

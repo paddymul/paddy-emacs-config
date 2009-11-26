@@ -45,8 +45,8 @@
     (setq python-mode-hook 'nil)
     (add-hook 'python-mode-hook 
               '(lambda ()
-                 (set (make-local-variable 'py-master-file) buffer-file-name))))
-  )
+                 (set (make-local-variable 'py-master-file) buffer-file-name)))))
+
 
 
 (require 'compile)
@@ -56,7 +56,8 @@
   "call the unit_testing framework on the current file"
   (interactive)
   (compile 
-     (format "/Library/Frameworks/Python.framework/Versions/2.6/bin/qr_py_tf %s" buffer-file-name ) t))
+     (format "source ~/permalink/env.sh ; /Library/Frameworks/Python.framework/Versions/2.6/bin/qr_py_tf %s" buffer-file-name ) t))
+
 
 
 
@@ -135,12 +136,28 @@
 ;; this regex needs some work
 
 
+(when (load "flymake" t) 
+  (defun flymake-pyflakes-init () 
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy 
+                       'flymake-create-temp-inplace)) 
+           (local-file (file-relative-name 
+                        temp-file 
+                        (file-name-directory buffer-file-name)))) 
+      (list "/Library/Frameworks/Python.framework/Versions/2.6/bin/pyflakes" (list local-file))))
+  (add-to-list 'flymake-allowed-file-name-masks 
+               '("\\.py\\'" flymake-pyflakes-init)))
+
 
 (add-hook 'python-mode-hook 
           '(lambda ()
              (local-set-key (kbd "C-H-a") 'py-paddy-beginning-of-class)
              (local-set-key (kbd "C-H-e") 'py-paddy-end-of-class)
              (local-set-key (kbd "C-H-f") 'py-fill-paragraph)
+             (local-set-key (kbd "C-H-n") 'flymake-goto-next-error)
+             (local-set-key (kbd "C-H-p") 'flymake-goto-previous-error)
+             (local-set-key (kbd "C-H-/") 
+                            'flymake-display-err-menu-for-current-line)
+
              (local-set-key (kbd "C-c C-t") 'paddy-py-test-current-file)
              (local-set-key (kbd "C-c C-d") 'paddy-py-test-current-tree)
 
@@ -150,7 +167,8 @@
 
 (add-hook 'python-mode-hook 
           '(lambda ()
-             (ropemacs-mode)))
+             (ropemacs-mode)
+             (flymake-mode)))
 (load-file (expand-file-name "~/me/emacs/python-mode.el"))
 ;(setq exec-path (append exec-path "/Library/Frameworks/Python.framework/Versions/2.6/bin/ipython"))
 
@@ -160,10 +178,9 @@
 ;(setq py-python-command-args '(""))
 (require 'python-mode)
 (require 'ipython)
-(setq ipython-command "/Library/Frameworks/Python.framework/Versions/2.6/bin/ipython")
-(setq py-python-command-args '("-pylab" "-colors" "LightBG"))
 (add-to-list 'auto-mode-alist '("\\.egg\\'" . archive-mode))
 
+(add-hook 'find-file-hook 'flymake-find-file-hook)
 
 (provide 'paddy-py-config)
 

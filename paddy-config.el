@@ -11,14 +11,15 @@
 (require 'paddy-key-config)
 (require 'paddy-help-fns)
 (require 'paddy-anything-config)
+(require 'paddy-py-config)
 
-
+;(/ 1 0)
 
 ;;;;specific mode configs
 (require 'paddy-shell-config) ;; most important
 ;(require 'paddy-w3m-config)    -- doesn't work in 23
 (require 'paddy-html-config)
-(require 'paddy-py-config)
+
 (require 'paddy-sql-config)
 
 (require 'paddy-tramp-ansi-config)
@@ -33,3 +34,6 @@
 (provide 'paddy-config)
 
 
+(defun my-compile ()
+  (interactive)
+  (compile  "python /Users/patrickmullen/permalink/tests/play.py" t))
