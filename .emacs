@@ -17,7 +17,8 @@
 
 
 
-(setq custom-file "~/me/emacs/.emacs-custom.el")
+;(setq custom-file "~/me/emacs/.emacs-custom.el")
+(setq custom-file "~/.emacs.d/.emacs-custom.el")
 (load custom-file)
 
 
