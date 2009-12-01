@@ -1,3 +1,4 @@
+
 ;;visual customizations
 (show-paren-mode)
 (column-number-mode)
@@ -31,11 +32,12 @@
 ;; I guess I will be a space person
 (setq-default indent-tabs-mode nil)
 (read-abbrev-file (expand-file-name "~/me/emacs/.abbrev_defs"))
+
+(defun load-expand (filename)
+  (load-file (expand-file-name filename)))
 (load-file (expand-file-name "~/me/emacs/highlight-current-line.el"))
-
-
-
-
+(load-expand  "~/me/emacs/highlight-current-line.el")
 (require 'highlight-current-line)
-
+(load-expand "~/.emacs.d/vendor/random/display-buffer-for-widescreen.el")
+(require 'display-buffer-for-wide-screen)
 (provide 'paddy-global)

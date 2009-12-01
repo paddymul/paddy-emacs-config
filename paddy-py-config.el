@@ -58,9 +58,10 @@
   (compile 
      (format "source ~/permalink/env.sh ; /Library/Frameworks/Python.framework/Versions/2.6/bin/qr_py_tf %s" buffer-file-name ) t))
 
-
-
-
+(defun paddy-py-test-django ()
+  "call the unit_testing framework on the current file"
+  (interactive)
+  (compile "cd  ~/permalink/ ; source ~/permalink/env.sh ;  python ~/permalink/permalink/manage.py  test  --noinput archiver" t))
 
 (defun paddy-py-test-current-tree ()
   "look at the current file, continue going up directories until one without a
@@ -147,6 +148,13 @@
   (add-to-list 'flymake-allowed-file-name-masks 
                '("\\.py\\'" flymake-pyflakes-init)))
 
+(defun my-flymake-show-help ()
+   (when (get-char-property (point) 'flymake-overlay)
+     (let ((help (get-char-property (point) 'help-echo)))
+       (if help (message "%s" help)))))
+
+; (add-hook 'post-command-hook 'my-flymake-show-help)
+
 
 (add-hook 'python-mode-hook 
           '(lambda ()
@@ -159,16 +167,19 @@
                             'flymake-display-err-menu-for-current-line)
 
              (local-set-key (kbd "C-c C-t") 'paddy-py-test-current-file)
+             (local-set-key (kbd "C-c C-j") 'paddy-py-test-django)
              (local-set-key (kbd "C-c C-d") 'paddy-py-test-current-tree)
 
              ;(local-set-key (kbd "C-c C-i") 'paddy-py-test-integration)
-             (local-set-key (kbd "C-c C-c") 'paddy-py-clear-execute-buffer)))
+;             (local-set-key (kbd "C-c C-c") 'paddy-py-clear-execute-buffer)
+             ))
 
 
 (add-hook 'python-mode-hook 
           '(lambda ()
              (ropemacs-mode)
-             (flymake-mode)))
+             ;(flymake-mode)
+             ))
 (load-file (expand-file-name "~/.emacs.d/vendor/python-mode.el"))
 ;(setq exec-path (append exec-path "/Library/Frameworks/Python.framework/Versions/2.6/bin/ipython"))
 
@@ -180,7 +191,7 @@
 (require 'ipython)
 (add-to-list 'auto-mode-alist '("\\.egg\\'" . archive-mode))
 
-(add-hook 'find-file-hook 'flymake-find-file-hook)
+;(add-hook 'find-file-hook 'flymake-find-file-hook)
 
 (provide 'paddy-py-config)
 
