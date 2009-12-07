@@ -1,97 +1,0 @@
-8
-
-dir
-11
-http://svn4.cvsdude.com/paddy/me/emacs/cedet-1.0pre4
-http://svn4.cvsdude.com/paddy/me
-
-
-
-2008-08-05T05:31:59.337775Z
-11
-paddy
-
-
-svn:special svn:externals svn:needs-lock
-
-cogre
-dir
-
-contrib
-dir
-
-PRERELEASE_CHECKLIST
-file
-
-
-
-
-2008-08-05T05:05:28.000000Z
-c11f0cdd5cb3b1bdc2e7a25085426be1
-2008-08-05T05:31:59.337775Z
-11
-paddy
-
-semantic
-dir
-
-speedbar
-dir
-
-cedet-update-version.el
-file
-
-
-
-
-2008-08-05T05:05:28.000000Z
-8547730a49c99a1cf4c5674e8b30331b
-2008-08-05T05:31:59.337775Z
-11
-paddy
-
-INSTALL
-file
-
-
-
-
-2008-08-05T05:05:28.000000Z
-64f5ac7a460bea407b4d2e5e51e1c6b2
-2008-08-05T05:31:59.337775Z
-11
-paddy
-
-USING_CEDET_FROM_CVS
-file
-
-
-
-
-2008-08-05T05:05:28.000000Z
-d33cf6ac9d008393289374c92300df84
-2008-08-05T05:31:59.337775Z
-11
-paddy
-
-common
-dir
-
-eieio
-dir
-
-ede
-dir
-
-Makefile
-file
-
-
-
-
-2008-08-05T05:05:28.000000Z
-231adae418975d2f646f5c5aa92e0a70
-2008-08-05T05:31:59.337775Z
-11
-paddy
-
