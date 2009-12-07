@@ -5,7 +5,8 @@
 ;(add-to-list 'desktop-globals-to-save 'file-name-history)
 
 ;  (setq *foo-desktop-dir* (expand-file-name "~/me/emacs/desktop"))
-(setq *foo-desktop-dir* (expand-file-name "~/me/desktop"))
+#(setq *foo-desktop-dir* (expand-file-name "~/me/desktop"))
+(setq *foo-desktop-dir* (expand-file-name "~/.emacs.d/desktop"))
 (setq desktop-dir *foo-desktop-dir*)
 (setq desktop-path (list *foo-desktop-dir*))
 (desktop-save-mode 1) ;; Switch on desktop.el
