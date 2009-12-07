@@ -2,8 +2,7 @@
 (setenv "PYMACS_PYTHON" "/Library/Frameworks/Python.framework/Versions/Current/bin/python")
 
 
-(load-file (expand-file-name "~/me/emacs/pymacs.el"))
-
+(load-expand "~/.emacs.d/vendor/pymacs.el")
 (autoload 'pymacs-apply "pymacs")
 (autoload 'pymacs-call "pymacs")
 (autoload 'pymacs-eval "pymacs" nil t)
@@ -183,7 +182,8 @@
 (load-file (expand-file-name "~/.emacs.d/vendor/python-mode.el"))
 ;(setq exec-path (append exec-path "/Library/Frameworks/Python.framework/Versions/2.6/bin/ipython"))
 
-(load-file (expand-file-name "~/me/emacs/ipython.el"))
+
+(load-expand "~/.emacs.d/vendor/ipython.el")
 (setq ipython-command "/Library/Frameworks/Python.framework/Versions/2.6/bin/ipython")
 (setq py-python-command-args '("-pylab" "-colors" "LightBG"))
 ;(setq py-python-command-args '(""))
