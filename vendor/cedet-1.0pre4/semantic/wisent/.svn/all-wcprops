@@ -1,0 +1,161 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent
+END
+bison-wisent.el
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent/bison-wisent.el
+END
+wisent-java-tags-wy.el
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent/wisent-java-tags-wy.el
+END
+wisent-java-tags.wy
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent/wisent-java-tags.wy
+END
+wisent-java-tags.el
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent/wisent-java-tags.el
+END
+wisent-expr.el
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent/wisent-expr.el
+END
+wisent-java-wy.el
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent/wisent-java-wy.el
+END
+wisent-python-wy.el
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent/wisent-python-wy.el
+END
+wisent-awk-wy.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent/wisent-awk-wy.el
+END
+wisent-java.wy
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent/wisent-java.wy
+END
+wisent-python.wy
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent/wisent-python.wy
+END
+wisent-awk.wy
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent/wisent-awk.wy
+END
+wisent-java.el
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent/wisent-java.el
+END
+wisent-python.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent/wisent-python.el
+END
+wisent-debug.el
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent/wisent-debug.el
+END
+wisent-grammar.el
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent/wisent-grammar.el
+END
+Project.ede
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent/Project.ede
+END
+wisent-comp.el
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent/wisent-comp.el
+END
+wisent-calc-wy.el
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent/wisent-calc-wy.el
+END
+wisent-calc.wy
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent/wisent-calc.wy
+END
+wisent-calc.el
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent/wisent-calc.el
+END
+wisent.el
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent/wisent.el
+END
+semantic-wisent.el
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent/semantic-wisent.el
+END
+wisent-cim-wy.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent/wisent-cim-wy.el
+END
+wisent-cim.wy
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent/wisent-cim.wy
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent/Makefile
+END
+wisent-grammar-macros.el
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/semantic/wisent/wisent-grammar-macros.el
+END

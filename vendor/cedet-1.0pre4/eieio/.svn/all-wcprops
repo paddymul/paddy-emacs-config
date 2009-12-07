@@ -1,0 +1,143 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/eieio
+END
+lmcompile.el
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/eieio/lmcompile.el
+END
+eieio.info
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/eieio/eieio.info
+END
+eieio-comp.el
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/eieio/eieio-comp.el
+END
+ChangeLog
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/eieio/ChangeLog
+END
+eieio-opt.el
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/eieio/eieio-opt.el
+END
+eieio-tests.el
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/eieio/eieio-tests.el
+END
+eieio.el
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/eieio/eieio.el
+END
+eieio-doc.el
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/eieio/eieio-doc.el
+END
+tree.el
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/eieio/tree.el
+END
+chart.el
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/eieio/chart.el
+END
+eieio-test-methodinvoke.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/eieio/eieio-test-methodinvoke.el
+END
+eieio-custom.el
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/eieio/eieio-custom.el
+END
+eieio-base.el
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/eieio/eieio-base.el
+END
+linemark.el
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/eieio/linemark.el
+END
+Project.ede
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/eieio/Project.ede
+END
+eieio.texi
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/eieio/eieio.texi
+END
+eieio-load.el
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/eieio/eieio-load.el
+END
+INSTALL
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/eieio/INSTALL
+END
+call-tree.el
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/eieio/call-tree.el
+END
+eieio-loaddefs.el
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/eieio/eieio-loaddefs.el
+END
+eieio-speedbar.el
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/eieio/eieio-speedbar.el
+END
+NEWS
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/eieio/NEWS
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/paddy/me/!svn/ver/11/emacs/cedet-1.0pre4/eieio/Makefile
+END

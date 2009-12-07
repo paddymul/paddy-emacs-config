@@ -1,0 +1,88 @@
+8
+
+dir
+11
+http://svn4.cvsdude.com/paddy/me/emacs/semantic-1.4.4/tests
+http://svn4.cvsdude.com/paddy/me
+
+
+
+2008-08-05T05:31:59.337775Z
+11
+paddy
+
+
+svn:special svn:externals svn:needs-lock
+
+templates.cpp
+file
+
+
+
+
+2008-08-05T05:05:28.000000Z
+4442bac6444b39d1de0cd80b05debded
+2008-08-05T05:31:59.337775Z
+11
+paddy
+
+test.c
+file
+
+
+
+
+2008-08-05T05:05:28.000000Z
+56b09c58f6e618487223e57d4973d581
+2008-08-05T05:31:59.337775Z
+11
+paddy
+
+test.cpp
+file
+
+
+
+
+2008-08-05T05:05:28.000000Z
+c2639791033019504c3cc67adf97eeeb
+2008-08-05T05:31:59.337775Z
+11
+paddy
+
+Project.ede
+file
+
+
+
+
+2008-08-05T05:05:28.000000Z
+42b5c2f4ac180b32ecb2a8e8b0e0149d
+2008-08-05T05:31:59.337775Z
+11
+paddy
+
+test.make
+file
+
+
+
+
+2008-08-05T05:05:28.000000Z
+9d57a111129a0b0fdf84164bfe4b2bfd
+2008-08-05T05:31:59.337775Z
+11
+paddy
+
+Makefile
+file
+
+
+
+
+2008-08-05T05:05:28.000000Z
+7686cbe7d6dae2081d4deaeca21429a3
+2008-08-05T05:31:59.337775Z
+11
+paddy
+
