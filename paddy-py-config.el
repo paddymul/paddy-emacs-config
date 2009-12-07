@@ -22,7 +22,7 @@
 
 
 
-(add-to-list 'load-path (expand-file-name  "~/me/emacs/ecb"))
+(load-expand  "~/.emacs.d/vendor/ecb")
 (require 'ecb)
 
 
