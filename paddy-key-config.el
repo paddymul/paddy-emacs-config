@@ -62,7 +62,7 @@
 
 
 
-
+(global-unset-key (kbd "C-\\")) ;; I never toggle input method
 
 
 ;notsure
