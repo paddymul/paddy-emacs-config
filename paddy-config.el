@@ -6,8 +6,9 @@
 ;;; last I don't want it to take a long time to fail
 
 ;;; global configs
-(require 'paddy-load-externals)
+
 (require 'paddy-global)
+(require 'paddy-load-externals)
 (require 'paddy-key-config)
 (require 'paddy-help-fns)
 (require 'paddy-anything-config)

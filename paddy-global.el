@@ -36,7 +36,7 @@
 (defun load-expand (filename)
   (load-file (expand-file-name filename)))
 
-(require 'highlight-current-line)
+;(require 'highlight-current-line)
 (load-expand "~/.emacs.d/vendor/random/display-buffer-for-widescreen.el")
 (require 'display-buffer-for-wide-screen)
 (provide 'paddy-global)
