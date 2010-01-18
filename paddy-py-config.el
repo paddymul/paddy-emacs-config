@@ -63,12 +63,12 @@
 
 (add-hook 'python-mode-hook 
           '(lambda ()
-             (local-set-key (kbd "C-H-a") 'py-paddy-beginning-of-class)
-             (local-set-key (kbd "C-H-e") 'py-paddy-end-of-class)
-             (local-set-key (kbd "C-H-f") 'py-fill-paragraph)
-             (local-set-key (kbd "C-H-n") 'flymake-goto-next-error)
-             (local-set-key (kbd "C-H-p") 'flymake-goto-previous-error)
-             (local-set-key (kbd "C-H-/") 
+             (local-set-key (kbd "C-s-a") 'py-paddy-beginning-of-class)
+             (local-set-key (kbd "C-s-e") 'py-paddy-end-of-class)
+             (local-set-key (kbd "C-s-f") 'py-fill-paragraph)
+             (local-set-key (kbd "C-s-n") 'flymake-goto-next-error)
+             (local-set-key (kbd "C-s-p") 'flymake-goto-previous-error)
+             (local-set-key (kbd "C-s-/") 
                             'flymake-display-err-menu-for-current-line)
 
              (local-set-key (kbd "C-c C-t") 'paddy-py-test-current-file)

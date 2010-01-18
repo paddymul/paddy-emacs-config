@@ -1,23 +1,5 @@
 
-(cond
- ((string-match "GNU" (emacs-version))
-  (cond 
-   ((string-match "linux" system-configuration)
-    (if (file-exists-p "~/.emacs-gnu-linux")
-	(progn
-	  (message "loading GNU Emacs customizations for Linux")
-	  (load-file "~/.emacs-gnu-linux"))))
-   ((string-match "darwin" (emacs-version))
-    (progn
-      (message "mac")
-      (setq mac-option-modifier 'hyper)
-      (setq mac-command-modifier 'meta)
-      t
-      ))
-   )					; matched GNU
-  ))
-
-(progn 
+(defun paddy-do-paren-key-switching () 
   (setq my-key-pairs
         '(
           ;(?! ?1) (?@ ?2) (?# ?3) (?$ ?4) (?% ?5)
@@ -52,6 +34,25 @@
       ))
   (my-key-swap my-key-pairs))
 
+(cond
+ ((string-match "GNU" (emacs-version))
+  (cond 
+   ((string-match "linux" system-configuration)
+    (if (file-exists-p "~/.emacs-gnu-linux")
+	(progn
+	  (message "loading GNU Emacs customizations for Linux")
+	  (load-file "~/.emacs-gnu-linux"))))
+   ((string-match "darwin" (emacs-version))
+    (progn
+      (message "mac")
+      (setq mac-option-modifier 'super)
+      (setq mac-command-modifier 'meta)
+      (paddy-do-paren-key-switching)
+      t
+      ))
+   )					; matched GNU
+  ))
+
 
 
 
@@ -79,16 +80,16 @@
   (shrink-window 1 1))
 
 (global-unset-key (kbd "M-`") )
-(global-set-key (kbd "H-P") 'enlarge-window)
-(global-set-key (kbd "H-p") 'windmove-up)
-(global-set-key (kbd "H-N") 'shrink-window)
-(global-set-key (kbd "H-n") 'windmove-down)
-(global-set-key (kbd "H-F") '_paddy-enlarge-window-horizontal)
-(global-set-key (kbd "H-f") 'windmove-right)
-(global-set-key (kbd "H-B") '_paddy-shrink-window-horizontal)
-(global-set-key (kbd "H-b") 'windmove-left)
-(global-set-key (kbd "H-w") 'delete-window)
-(global-set-key (kbd "H-o") 'other-window)
+(global-set-key (kbd "s-P") 'enlarge-window)
+(global-set-key (kbd "s-p") 'windmove-up)
+(global-set-key (kbd "s-N") 'shrink-window)
+(global-set-key (kbd "s-n") 'windmove-down)
+(global-set-key (kbd "s-F") '_paddy-enlarge-window-horizontal)
+(global-set-key (kbd "s-f") 'windmove-right)
+(global-set-key (kbd "s-B") '_paddy-shrink-window-horizontal)
+(global-set-key (kbd "s-b") 'windmove-left)
+(global-set-key (kbd "s-w") 'delete-window)
+(global-set-key (kbd "s-o") 'other-window)
 
 
 ;;;;;;;;;buffer movement commands ---anything
@@ -96,11 +97,11 @@
 (global-set-key  '[C-tab] 'bs-cycle-next)
 (global-set-key '[C-S-tab] 'bs-cycle-previous)
 
-(global-set-key (kbd "H-g") 'find-grep)
-(global-set-key (kbd "H-w") 'delete-window)
-(global-set-key (kbd "H-o") 'other-window)
-(global-set-key (kbd "H-q") 'shell)
-(global-set-key (kbd "H-s") 'new-shell)
+(global-set-key (kbd "s-g") 'find-grep)
+(global-set-key (kbd "s-w") 'delete-window)
+(global-set-key (kbd "s-o") 'other-window)
+(global-set-key (kbd "s-q") 'shell)
+(global-set-key (kbd "s-s") 'new-shell)
 
 
 
@@ -109,10 +110,10 @@
 (global-set-key (kbd "C-x C-S-f") 'find-file-other-window)
 
 ;--anything
-(global-set-key (kbd "H-a") 'anything)
+(global-set-key (kbd "s-a") 'anything)
 
-(global-set-key (kbd "H-\\") 'anything)
-(global-set-key (kbd "H-x") 'paddy-M-x-anything)
+(global-set-key (kbd "s-\\") 'anything)
+(global-set-key (kbd "s-x") 'paddy-M-x-anything)
 (global-set-key (kbd "M-x") 'execute-extended-command)
 (global-set-key (kbd "M-y") 'anything-show-kill-ring)
 
@@ -124,23 +125,25 @@
 (global-set-key (kbd "C-=") 'unexpand-abbrev)
 
 
-(global-set-key (kbd "H-r") '(lambda () 
+(global-set-key (kbd "s-r") '(lambda () 
                                (interactive)
                                (revert-buffer)))
-(global-set-key "\M-S-g" 'goto-line)
+(global-set-key (kbd "M-S-g") 'goto-line)
 (global-set-key (kbd "S-M-g") 'goto-line)
 
 
 ; Yegge advice
-(global-unset-key  "\C-w" )
+(global-unset-key (kbd "C-w") )
 (global-set-key  (kbd "C-w") 'backward-kill-word)
 
 (global-unset-key (kbd "C-S-w") )
 (global-set-key (kbd "C-S-w") 'kill-word)
 
 
-(global-set-key "\C-x\C-k" 'kill-region)
-(global-set-key "\C-c\C-k" 'kill-region)
+;(global-set-key "\C-x\C-k" 'kill-region)
+;(global-set-key "\C-c\C-k" 'kill-region)
+(global-set-key (kbd "C-x C-k") 'kill-region)
+(global-set-key (kbd "C-c C-k") 'kill-region)
 
 
 
