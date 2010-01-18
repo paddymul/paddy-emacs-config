@@ -15,4 +15,7 @@
   (defun paddy-set-smallest-font ()
     (interactive)
     (set-default-font "-apple-bitstream vera sans mono-medium-r-normal--0-0-0-0-m-0-iso10646-1"))
+(defun paddy-set-ubuntu-font ()
+  (interactive)
+  (set-default-font "-unknown-Inconsolata-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1"))
 (provide 'paddy-font-config)
