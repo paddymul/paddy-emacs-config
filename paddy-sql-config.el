@@ -9,8 +9,7 @@
 (add-hook 'sql-interactive-mode-hook
 	  (lambda ()
 	    (abbrev-mode)))
-
-(load-file (expand-file-name "~/me/emacs/sql-indent.el"))
+(load-expand "~/.emacs.d/vendor/sql-indent.el")
 (require 'sql-indent)
 
 (unwind-protect

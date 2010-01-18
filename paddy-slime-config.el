@@ -1,9 +1,8 @@
-;;;(setq inferior-lisp-program "/Applications/OpenMCL/scripts/openmcl")
-;(add-to-list 'load-path (expand-file-name "~/me/emacs/aqlisp/"))
-(setq inferior-lisp-program "/usr/local/bin/sbcl")
-;(add-to-list 'load-path "~/me/emacs/slime-cvs-2009-04-26/slime")
-;(add-to-list 'load-path "/Users/patrickmullen/temp/downloads/lisp/slime")
-(add-to-list 'load-path "/Users/patrickmullen/.emacs.d/slime")
+
+(setq inferior-lisp-program "/usr/local/bin/sbcl") ;; mac specific
+(setq inferior-lisp-program "/usr/bin/sbcl")  ;; linux specific
+
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/slime"))
 (require 'slime)
 ;(slime-setup)
 (slime-setup '(slime-fancy))
