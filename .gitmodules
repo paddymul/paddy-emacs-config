@@ -1,3 +1,6 @@
 [submodule "vendor/magit"]
 	path = vendor/magit
 	url = git://gitorious.org/magit/mainline.git
+[submodule "vendor/pymacs"]
+	path = vendor/pymacs
+	url = git://github.com/pinard/Pymacs.git

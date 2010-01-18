@@ -1,8 +1,10 @@
 
-(setenv "PYMACS_PYTHON" "/Library/Frameworks/Python.framework/Versions/Current/bin/python")
+;(setenv "PYMACS_PYTHON" "/Library/Frameworks/Python.framework/Versions/Current/bin/python")
+(setenv "PYMACS_PYTHON" "/usr/bin/python")
 
 
-(load-expand "~/.emacs.d/vendor/pymacs.el")
+;(load-expand "~/.emacs.d/vendor/pymacs.el")
+(load-expand "~/.emacs.d/vendor/pymacs/pymacs.el")
 (autoload 'pymacs-apply "pymacs")
 (autoload 'pymacs-call "pymacs")
 (autoload 'pymacs-eval "pymacs" nil t)

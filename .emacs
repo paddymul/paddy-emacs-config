@@ -8,13 +8,13 @@
 	  (load-file "~/.emacs-gnu-linux"))))
    ((string-match "Carbon" (emacs-version))
     (progn
-      (if (fboundp 'tool-bar-mode)
-	  (tool-bar-mode -1))
+
       t))
    ) ; matched GNU
   ))
 
-
+      (if (fboundp 'tool-bar-mode)
+	  (tool-bar-mode -1))
 
 
 ;(setq custom-file "~/me/emacs/.emacs-custom.el")
