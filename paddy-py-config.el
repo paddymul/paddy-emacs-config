@@ -91,8 +91,8 @@
 ;(setq exec-path (append exec-path "/Library/Frameworks/Python.framework/Versions/2.6/bin/ipython"))
 
 
-(load-expand "~/.emacs.d/vendor/ipython.el")
-(setq ipython-command "/Library/Frameworks/Python.framework/Versions/2.6/bin/ipython")
+;(load-expand "~/.emacs.d/vendor/ipython.el")
+(setq ipython-command "/usr/bin/ipython") ;/Library/Frameworks/Python.framework/Versions/2.6/bin/ipython")
 (setq py-python-command-args '("-pylab" "-colors" "LightBG"))
 ;(setq py-python-command-args '(""))
 (require 'python-mode)
