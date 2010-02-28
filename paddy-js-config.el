@@ -1,8 +1,8 @@
-    (autoload 'moz-minor-mode "moz" "Mozilla Minor and Inferior Mozilla Modes" t)
+(autoload 'moz-minor-mode "moz" "Mozilla Minor and Inferior Mozilla Modes" t)
 
-    (add-hook 'javascript-mode-hook 'javascript-custom-setup)
-    (defun javascript-custom-setup ()
-      (moz-minor-mode 1))
+(add-hook 'javascript-mode-hook 'javascript-custom-setup)
+(defun javascript-custom-setup ()
+  (moz-minor-mode 1))
 
 
 (add-to-list 'load-path "~/me/emacs/js2/")
@@ -10,7 +10,7 @@
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (defun js2-paddy-hook ()
-  (local-set-key "C-'" 'js2-next-error))
+  (local-set-key "s-'" 'js2-next-error))
 (add-hook 'js2-mode-hook 'js2-paddy-hook)
 (add-to-list 'auto-mode-alist '("\\.js$" . java-mode))
 (load-file (expand-file-name "~/me/emacs/mozrepl/javascript.el"))
@@ -20,4 +20,5 @@
 (defun java-custom-setup ()
   (moz-minor-mode 1))
 
+(add-to-list 'auto-mode-alist '("\\.jar\\'" . archive-mode))
 (provide 'paddy-js-config)
