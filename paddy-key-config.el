@@ -64,6 +64,7 @@
 
 
 (global-unset-key (kbd "C-\\")) ;; I never toggle input method
+(global-unset-key (kbd "M-o"))  ;; I never want to set-face-font but I often accidently type this when I want s-o
 
 
 ;notsure
@@ -94,14 +95,21 @@
 
 ;;;;;;;;;buffer movement commands ---anything
 
-(global-set-key  '[C-tab] 'bs-cycle-next)
-(global-set-key '[C-S-tab] 'bs-cycle-previous)
+;(global-set-key  '[C-tab] 'bs-cycle-next)
+;(global-set-key '[C-S-tab] 'bs-cycle-previous)
+(global-unset-key '[C-tab])
+(global-unset-key '[C-S-tab])
+
 
 (global-set-key (kbd "s-g") 'find-grep)
 (global-set-key (kbd "s-w") 'delete-window)
 (global-set-key (kbd "s-o") 'other-window)
-(global-set-key (kbd "s-q") 'shell)
-(global-set-key (kbd "s-s") 'new-shell)
+(global-set-key '[s-return] 'other-window)
+(global-set-key '[s-tab] 'other-window)
+(global-set-key (kbd "s-s") 'split-window-horizontally)
+(global-set-key (kbd "s-S") 'split-window-vertically)
+
+(global-set-key (kbd "s-'") 'new-shell)
 
 
 
@@ -139,10 +147,19 @@
 (global-unset-key (kbd "C-S-w") )
 (global-set-key (kbd "C-S-w") 'kill-word)
 
+(defun paddy-kill-from-begining-of-line ()
+  (interactive)
+  (move-beginning-of-line 1)           
+  (kill-line))
+
+(global-set-key (kbd "C-S-k") 'paddy-kill-from-begining-of-line)
+(global-set-key (kbd "C-k") 'kill-line)
 
 ;(global-set-key "\C-x\C-k" 'kill-region)
 ;(global-set-key "\C-c\C-k" 'kill-region)
 (global-set-key (kbd "C-x C-k") 'kill-region)
+
+(global-set-key (kbd "C-j") 'kill-region)
 (global-set-key (kbd "C-c C-k") 'kill-region)
 
 
