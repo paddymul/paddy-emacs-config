@@ -4,3 +4,6 @@
 [submodule "vendor/pymacs"]
 	path = vendor/pymacs
 	url = git://github.com/pinard/Pymacs.git
+[submodule "vendor/slime"]
+	path = vendor/slime
+	url = git://github.com/nablaone/slime.git
