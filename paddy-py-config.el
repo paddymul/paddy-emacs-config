@@ -14,8 +14,11 @@
 (setq ropemacs-global-prefix "C-c r") 
 (add-hook 'ropemacs-mode-hook
 	  '(lambda ()
-             (define-key ropemacs-local-keymap   "\M-/" 'dabbrev-expand)
-             (define-key ropemacs-local-keymap   "\M-'" 'rope-code-assist)))
+             (define-key ropemacs-local-keymap (kbd "M-/") 'dabbrev-expand)
+             (define-key ropemacs-local-keymap (kbd "M-,") 'rope-goto-definition)
+             (define-key ropemacs-local-keymap (kbd "M-'") 'rope-code-assist))))
+
+
 
 
 
@@ -40,18 +43,19 @@
   (re-search-forward "^$")) 
 
 ;; this regex needs some work
-
-
-(when (load "flymake" t) 
-  (defun flymake-pyflakes-init () 
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy 
-                       'flymake-create-temp-inplace)) 
-           (local-file (file-relative-name 
-                        temp-file 
-                        (file-name-directory buffer-file-name)))) 
-      (list "/Library/Frameworks/Python.framework/Versions/2.6/bin/pyflakes" (list local-file))))
-  (add-to-list 'flymake-allowed-file-name-masks 
-               '("\\.py\\'" flymake-pyflakes-init)))
+;; code checking via flymake
+;; set code checker here from "epylint", "pyflakes"
+(setq pycodechecker "pyflakes")
+(when (load "flymake" t)
+  (defun flymake-pycodecheck-init ()
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-inplace))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
+      (list pycodechecker (list local-file))))
+  (add-to-list 'flymake-allowed-file-name-masks
+               '("\\.py\\'" flymake-pycodecheck-init)))
 
 (defun my-flymake-show-help ()
    (when (get-char-property (point) 'flymake-overlay)
@@ -60,6 +64,7 @@
 
 ; (add-hook 'post-command-hook 'my-flymake-show-help)
 
+(load-file (expand-file-name "~/.emacs.d/vendor/python-mode.el"))
 
 (add-hook 'python-mode-hook 
           '(lambda ()
@@ -85,11 +90,7 @@
 (add-hook 'python-mode-hook 
           '(lambda ()
              (ropemacs-mode)
-             (flymake-mode)
-             ))
-(load-file (expand-file-name "~/.emacs.d/vendor/python-mode.el"))
-;(setq exec-path (append exec-path "/Library/Frameworks/Python.framework/Versions/2.6/bin/ipython"))
-
+             (flymake-mode)))
 
 ;(load-expand "~/.emacs.d/vendor/ipython.el")
 (setq ipython-command "/usr/bin/ipython") ;/Library/Frameworks/Python.framework/Versions/2.6/bin/ipython")
