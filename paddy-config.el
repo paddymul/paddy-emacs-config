@@ -19,7 +19,7 @@
 ;;;;specific mode configs
 (require 'paddy-shell-config) ;; most important
 ;(require 'paddy-w3m-config)    -- doesn't work in 23
-(require 'paddy-html-config)
+
 
 (require 'paddy-sql-config)
 
@@ -31,7 +31,7 @@
 ;;;;;;;;
 (require 'paddy-desktop-config) ;;;;; down here because it takes the longest to load
 (require 'paddy-font-config) ;; likely to fail, slow
-
+;(require 'paddy-html-config)
 (provide 'paddy-config)
 
 
