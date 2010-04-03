@@ -16,7 +16,7 @@
 	  '(lambda ()
              (define-key ropemacs-local-keymap (kbd "M-/") 'dabbrev-expand)
              (define-key ropemacs-local-keymap (kbd "M-,") 'rope-goto-definition)
-             (define-key ropemacs-local-keymap (kbd "M-'") 'rope-code-assist))))
+             (define-key ropemacs-local-keymap (kbd "M-'") 'rope-code-assist)))
 
 
 
@@ -66,30 +66,33 @@
 
 (load-file (expand-file-name "~/.emacs.d/vendor/python-mode.el"))
 
+(defun paddy-local-set-keys (key-list)
+  "saves reptition when setting a large number of keybindings "
+  (mapcar '(lambda (key-pair) 
+             (local-set-key 
+              (read-kbd-macro (car key-pair)) 
+              (cadr key-pair)))
+          key-list))
+
+;(setq python-mode-hook nil)
 (add-hook 'python-mode-hook 
-          '(lambda ()
-             (local-set-key (kbd "C-s-a") 'py-paddy-beginning-of-class)
-             (local-set-key (kbd "C-s-e") 'py-paddy-end-of-class)
-             (local-set-key (kbd "C-s-f") 'py-fill-paragraph)
-             (local-set-key (kbd "C-s-n") 'flymake-goto-next-error)
-             (local-set-key (kbd "C-s-p") 'flymake-goto-previous-error)
-             (local-set-key (kbd "C-s-/") 
-                            'flymake-display-err-menu-for-current-line)
-
-             (local-set-key (kbd "C-c C-t") 'paddy-py-test-current-file)
-             (local-set-key (kbd "C-c r") 'paddy-recompile)
-             (local-set-key (kbd "C-c C-j") 'paddy-py-test-django-full)
-             (local-set-key (kbd "C-c C-o") 'paddy-py-test-django-working)
-             (local-set-key (kbd "C-c C-d") 'paddy-py-test-current-tree)
-
-             ;(local-set-key (kbd "C-c C-i") 'paddy-py-test-integration)
-;             (local-set-key (kbd "C-c C-c") 'paddy-py-clear-execute-buffer)
-             ))
-
-
-(add-hook 'python-mode-hook 
-          '(lambda ()
-             (ropemacs-mode)
+          '(lambda () 
+             (paddy-local-set-keys 
+              '(("C-s-a"     py-paddy-beginning-of-class)
+                ("C-s-e"     py-paddy-end-of-class)
+                ("C-s-f"     py-fill-paragraph)
+                ("C-s-n"     flymake-goto-next-error)
+                ("C-s-p"     flymake-goto-previous-error)
+                ("C-s-/"     flymake-display-err-menu-for-current-line)
+                ("C-c C-t"   paddy-py-test-current-file)
+                ("C-c r"     paddy-recompile)
+                ("C-c C-j"   paddy-py-test-django-full)
+                ("C-c C-o"   paddy-py-test-django-working)
+                ("C-c C-d"   paddy-py-test-current-tree)
+                ;("C-c C-i"   paddy-py-test-integration)
+                ;("C-c C-c"   paddy-py-clear-execute-buffer)))
+                ))
+             ;(ropemacs-mode)
              (flymake-mode)))
 
 ;(load-expand "~/.emacs.d/vendor/ipython.el")
@@ -101,6 +104,10 @@
 (add-to-list 'auto-mode-alist '("\\.egg\\'" . archive-mode))
 
 ;(add-hook 'find-file-hook 'flymake-find-file-hook)
+
+;; utter hack
+(load-file (expand-file-name "~/eltesto/eltesto.el"))
+(load-file (expand-file-name "~/eltesto/py-testing-commands.el"))
 
 (provide 'paddy-py-config)
 
