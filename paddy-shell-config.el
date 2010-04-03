@@ -54,5 +54,21 @@
   (if (not (comint-after-pmark-p)) (forward-line  1)
     (comint-next-input 1) ))
 
+(defun prompt-for-shell-name (shell-name)
+  (interactive "s what do you want to name your new shell? ")
+  (switch-to-buffer "*shell*")
+  (rename-buffer "temp-shell-*******")
+  (shell)
+  (rename-buffer shell-name)
+  (switch-to-buffer "temp-shell-*******")
+  (rename-buffer "*shell*")
+  (switch-to-buffer shell-name))
+
+(defun paddy-insert-html-into-buffer (url)
+  (interactive "s what url do you want to get: ")
+  (switch-to-buffer url)
+  (html-mode)
+  (shell-command (format "curl --stderr /dev/null %s" url) (current-buffer)))
+
 
 (provide 'paddy-shell-config)
