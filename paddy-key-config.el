@@ -107,6 +107,7 @@
 (global-set-key '[s-return] 'other-window)
 (global-set-key '[s-tab] 'other-window)
 (global-set-key (kbd "s-s") 'split-window-horizontally)
+(global-set-key (kbd "s-=") 'balance-windows)
 (global-set-key (kbd "s-S") 'split-window-vertically)
 
 (global-set-key (kbd "s-'") 'new-shell)
