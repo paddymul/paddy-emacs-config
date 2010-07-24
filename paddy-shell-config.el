@@ -16,6 +16,17 @@
   (switch-to-buffer shell-name))
 
 
+(defun paddy-shell-previous-prompt() 
+  " a bit of a hack, but this ignores pdb, sql, and python prompts "
+  (interactive)
+  (search-backward ") $")
+  (forward-char 4))
+
+(defun paddy-shell-next-prompt() 
+  " a bit of a hack, but this ignores pdb, sql, and python prompts "
+  (interactive)
+  (search-forward ") $")
+  (forward-char 4))
 
 (defun new-shell ()
   (interactive)
@@ -23,10 +34,13 @@
         (command-execute 'prompt-for-shell-name)
       (shell)))
 
-(add-hook  'shell-mode-hook 
-	  '(lambda ()
-             (define-key shell-mode-map   (kbd "C-M-a")  'comint-previous-prompt)
-             (define-key shell-mode-map   (kbd "C-M-e")  'comint-next-prompt)))
+(add-hook 'shell-mode-hook 
+   '(lambda ()
+      ;(define-key shell-mode-map   (kbd "C-M-a")  'comint-previous-prompt)
+      ;(define-key shell-mode-map   (kbd "C-M-e")  'comint-next-prompt)
+      (define-key shell-mode-map   (kbd "C-M-a")  'paddy-shell-previous-prompt)
+      (define-key shell-mode-map   (kbd "C-M-e")  'paddy-shell-next-prompt)
+))
 
 
 
@@ -53,6 +67,8 @@
   (interactive)
   (if (not (comint-after-pmark-p)) (forward-line  1)
     (comint-next-input 1) ))
+
+
 
 (defun prompt-for-shell-name (shell-name)
   (interactive "s what do you want to name your new shell? ")
