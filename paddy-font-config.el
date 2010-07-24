@@ -19,6 +19,6 @@
   (interactive)
   (set-default-font "-unknown-Inconsolata-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1"))
 
-(set-default-font "Monospace-12")
+(set-default-font "Monospace-8")
 
 (provide 'paddy-font-config)
