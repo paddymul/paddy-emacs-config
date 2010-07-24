@@ -16,3 +16,4 @@
 *.elc
 history
 session.*
+tramp
