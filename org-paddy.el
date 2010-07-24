@@ -7,5 +7,5 @@
 	  '(lambda ()
              (auto-fill-mode)))
 
-(provide 'paddy-org)
+(provide 'org-paddy)
 
