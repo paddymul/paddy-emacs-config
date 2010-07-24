@@ -26,7 +26,7 @@
 (require 'sql-config-paddy)
 
 (require 'tramp-ansi-config-paddy)
-(require 'slime-config-paddy)  ;;;;; very likely to fial
+;(require 'slime-config-paddy)  ;;;;; very likely to fial
 
 
 

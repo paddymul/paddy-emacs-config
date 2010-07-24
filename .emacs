@@ -22,6 +22,12 @@
 (load custom-file)
 
 
+
+(when
+    (load
+     (expand-file-name "~/.emacs.d/elpa/package.el"))
+  (package-initialize))
+
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/"))
 (require 'paddy-config)
 (put 'set-goal-column 'disabled nil)
@@ -32,8 +38,3 @@
 ;;; interfacing with ELPA, the package archive.
 ;;; Move this code earlier if you want to reference
 ;;; packages in your .emacs.
-(when
-    (load
-     (expand-file-name "~/.emacs.d/elpa/package.el"))
-  (package-initialize))
-

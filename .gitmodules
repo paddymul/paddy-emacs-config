@@ -6,7 +6,10 @@
 	url = git://github.com/pinard/Pymacs.git
 [submodule "vendor/slime"]
 	path = vendor/slime
-	url = git://github.com/nablaone/slime.git
+	url = git://github.com/technomancy/slime.git
 [submodule "vendor/swank-clojure"]
 	path = vendor/swank-clojure
 	url = git://github.com/technomancy/swank-clojure.git
+[submodule "vendor/clojure-mode"]
+	path = vendor/clojure-mode
+	url = git://github.com/jochu/clojure-mode.git
