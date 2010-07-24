@@ -7,31 +7,32 @@
 
 ;;; global configs
 
-(require 'paddy-global)
-(require 'paddy-load-externals)
-(require 'paddy-key-config)
-(require 'paddy-help-fns)
-(require 'paddy-anything-config)
-(require 'paddy-py-config)
+(require 'global-paddy-config)
+(require 'load-externals-paddy)
+(require 'key-config-paddy)
+(require 'help-fns-paddy)
+(require 'anything-config-paddy)
+(require 'py-config-paddy)
 
 ;(/ 1 0)
 (require 'diff-config)
 (require 'org-paddy)
+(require 'vc-config)
 ;;;;specific mode configs
-(require 'paddy-shell-config) ;; most important
+(require 'shell-config-paddy) ;; most important
 ;(require 'paddy-w3m-config)    -- doesn't work in 23
 
 
-(require 'paddy-sql-config)
+(require 'sql-config-paddy)
 
-(require 'paddy-tramp-ansi-config)
-(require 'paddy-slime-config)  ;;;;; very likely to fial
+(require 'tramp-ansi-config-paddy)
+(require 'slime-config-paddy)  ;;;;; very likely to fial
 
 
 
 ;;;;;;;;
-(require 'paddy-desktop-config) ;;;;; down here because it takes the longest to load
-(require 'paddy-font-config) ;; likely to fail, slow
+(require 'desktop-config-paddy) ;;;;; down here because it takes the longest to load
+(require 'font-config-paddy) ;; likely to fail, slow
 ;(require 'paddy-html-config)
 (provide 'paddy-config)
 
