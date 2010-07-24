@@ -46,10 +46,12 @@
 ;; code checking via flymake
 ;; set code checker here from "epylint", "pyflakes"
 (setq pycodechecker "pyflakes")
+(defun paddy-flymake-create-temp-global (file-name prefix)
+    (make-temp-file prefix))
 (when (load "flymake" t)
   (defun flymake-pycodecheck-init ()
     (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
+                       'paddy-flymake-create-temp-global))
            (local-file (file-relative-name
                         temp-file
                         (file-name-directory buffer-file-name))))
@@ -57,10 +59,112 @@
   (add-to-list 'flymake-allowed-file-name-masks
                '("\\.py\\'" flymake-pycodecheck-init)))
 
+(defvar global-markset-nomsg nil)
+
+
+;; this is redefined so that I can call debug-on-entry on just this function
+(defun paddy-mark-message ()
+      (message "Mark set"))
+
+;;; This is modified so that I can control markset nomsg globally, so
+;;; that I don't have to pass nomsg down through 30 funciton calls
+
+(defun push-mark (&optional location nomsg activate)
+  "Set mark at LOCATION (point, by default) and push old mark on mark ring.
+If the last global mark pushed was not in the current buffer,
+also push LOCATION on the global mark ring.
+Display `Mark set' unless the optional second arg NOMSG is non-nil.
+
+Novice Emacs Lisp programmers often try to use the mark for the wrong
+purposes.  See the documentation of `set-mark' for more information.
+
+In Transient Mark mode, activate mark if optional third arg ACTIVATE non-nil."
+  (unless (null (mark t))
+    (setq mark-ring (cons (copy-marker (mark-marker)) mark-ring))
+    (when (> (length mark-ring) mark-ring-max)
+      (move-marker (car (nthcdr mark-ring-max mark-ring)) nil)
+      (setcdr (nthcdr (1- mark-ring-max) mark-ring) nil)))
+  (set-marker (mark-marker) (or location (point)) (current-buffer))
+  ;; Now push the mark on the global mark ring.
+  (if (and global-mark-ring
+	   (eq (marker-buffer (car global-mark-ring)) (current-buffer)))
+      ;; The last global mark pushed was in this same buffer.
+      ;; Don't push another one.
+      nil
+    (setq global-mark-ring (cons (copy-marker (mark-marker)) global-mark-ring))
+    (when (> (length global-mark-ring) global-mark-ring-max)
+      (move-marker (car (nthcdr global-mark-ring-max global-mark-ring)) nil)
+      (setcdr (nthcdr (1- global-mark-ring-max) global-mark-ring) nil)))
+  (or nomsg executing-kbd-macro (> (minibuffer-depth) 0) 
+      global-markset-nomsg
+      (paddy-mark-message))
+  (if (or activate (not transient-mark-mode))
+      (set-mark (mark t)))
+  nil)
+
+(defun flymake-highlight-line (line-no line-err-info-list)
+  "Highlight line LINE-NO in current buffer.
+Perhaps use text from LINE-ERR-INFO-LIST to enhance highlighting."
+  (let ((global-markset-nomsg t))
+  (goto-line line-no)
+  (let* ((line-beg (flymake-line-beginning-position))
+	 (line-end (flymake-line-end-position))
+	 (beg      line-beg)
+	 (end      line-end)
+	 (tooltip-text (flymake-ler-text (nth 0 line-err-info-list)))
+	 (face     nil))
+
+    (goto-char line-beg)
+    (while (looking-at "[ \t]")
+      (forward-char))
+
+    (setq beg (point))
+
+    (goto-char line-end)
+    (while (and (looking-at "[ \t\r\n]") (> (point) 1))
+      (backward-char))
+
+    (setq end (1+ (point)))
+
+    (when (<= end beg)
+      (setq beg line-beg)
+      (setq end line-end))
+
+    (when (= end beg)
+      (goto-char end)
+      (forward-line)
+      (setq end (point)))
+
+    (if (> (flymake-get-line-err-count line-err-info-list "e") 0)
+	(setq face 'flymake-errline)
+      (setq face 'flymake-warnline))
+
+    (flymake-make-overlay beg end tooltip-text face nil))))
+
+;; this is redefined so that global-markset-nomsg is t, I don't want
+;; markset things popping up because of flymake stuff
+
+
+(defun flymake-goto-line (line-no)
+  "Go to line LINE-NO, then skip whitespace."
+  (let ((global-markset-nomsg t))
+  (goto-line line-no)
+  (flymake-skip-whitespace)))
+
 (defun my-flymake-show-help ()
    (when (get-char-property (point) 'flymake-overlay)
      (let ((help (get-char-property (point) 'help-echo)))
        (if help (message "%s" help)))))
+
+(defun paddy-flymake-goto-next-error ()
+  (interactive)
+  (flymake-goto-next-error)
+  (my-flymake-show-help))
+
+(defun paddy-flymake-goto-prev-error ()
+  (interactive)
+  (flymake-goto-prev-error)
+  (my-flymake-show-help))
 
 ; (add-hook 'post-command-hook 'my-flymake-show-help)
 
@@ -81,8 +185,8 @@
               '(("C-s-a"     py-paddy-beginning-of-class)
                 ("C-s-e"     py-paddy-end-of-class)
                 ("C-s-f"     py-fill-paragraph)
-                ("C-s-n"     flymake-goto-next-error)
-                ("C-s-p"     flymake-goto-previous-error)
+                ("C-s-n"     paddy-flymake-goto-next-error)
+                ("C-s-p"     paddy-flymake-goto-prev-error)
                 ("C-s-/"     flymake-display-err-menu-for-current-line)
                 ("C-c C-t"   paddy-py-test-current-file)
                 ("C-c r"     paddy-recompile)
@@ -94,6 +198,11 @@
                 ))
              ;(ropemacs-mode)
              (flymake-mode)))
+
+
+
+;;; for some reason this eventually makes python-mode really slow after a while
+(remove-hook 'python-mode-hook 'wisent-python-default-setup)
 
 ;(load-expand "~/.emacs.d/vendor/ipython.el")
 (setq ipython-command "/usr/bin/ipython") ;/Library/Frameworks/Python.framework/Versions/2.6/bin/ipython")
