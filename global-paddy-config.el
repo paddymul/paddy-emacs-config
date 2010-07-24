@@ -66,5 +66,5 @@
 ;(require 'highlight-current-line)
 (load-expand "~/.emacs.d/vendor/random/display-buffer-for-widescreen.el")
 (require 'display-buffer-for-wide-screen)
-(global-linum-mode)
+;(global-linum-mode)
 (provide 'global-paddy-config)
