@@ -15,7 +15,8 @@
 (require 'paddy-py-config)
 
 ;(/ 1 0)
-
+(require 'diff-config)
+(require 'org-paddy)
 ;;;;specific mode configs
 (require 'paddy-shell-config) ;; most important
 ;(require 'paddy-w3m-config)    -- doesn't work in 23
