@@ -163,6 +163,9 @@
 (global-set-key (kbd "C-j") 'kill-region)
 (global-set-key (kbd "C-c C-k") 'kill-region)
 
+(global-set-key (kbd "s-M-f") 'find-file-at-point)
+(global-set-key (kbd "s-C-x C-k") 'copy-region-as-kill) 
+
 
 
 
