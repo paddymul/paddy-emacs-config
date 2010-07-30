@@ -9,10 +9,12 @@
 (setq visible-bell t) ;; No beeping
 
 (progn
+(defun emacs-temp-join (extra-dir-name)
+  (let ((temp-dir-name (concat   "/home/paddy/.emacs.d/emacs-temp/" extra-dir-name)))
+    (make-directory temp-dir-name t)
+    temp-dir-name))
 (defvar autosave-dir
- (concat "/tmp/emacs_autosaves/" (user-login-name) "/"))
-
-(make-directory autosave-dir t)
+  (emacs-temp-join "emacs_autosaves/"))
 
 (defun auto-save-file-name-p (filename)
   (string-match "^#.*#$" (file-name-nondirectory filename)))
@@ -27,7 +29,7 @@
 ;; Put backup files (ie foo~) in one place too. (The backup-directory-alist
 ;; list contains regexp=>directory mappings; filenames matching a regexp are
 ;; backed up in the corresponding directory. Emacs will mkdir it if necessary.)
-(defvar backup-dir (concat "/tmp/emacs_backups/" (user-login-name) "/"))
+(defvar backup-dir (emacs-temp-join "emacs_backups/"))
 (setq backup-directory-alist (list (cons "." backup-dir))))
 
 
