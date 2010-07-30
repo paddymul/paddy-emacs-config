@@ -28,12 +28,13 @@
                           "/opt/jars/swank-clojure.jar"
                           "/opt/jars/clojure.jar"
                           "/opt/jars/clojure-contrib.jar"))
-(require 'swank-clojure)
+
 
 
 ;(add-to-list 'load-path (expand-file-name "~/.emacs.d/slime"))
 (require 'slime)
-(slime-setup '(slime-fancy))
+(require 'swank-clojure)
+(slime-setup )
 (add-hook 'lisp-mode-hook (lambda () (slime-mode t)))
 (add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
 
