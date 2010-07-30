@@ -5,7 +5,7 @@
   ;; If there is more than one, they won't work right.
  '(compilation-scroll-output t)
  '(completion-ignored-extensions (quote (".o" "~" ".bin" ".lbin" ".so" ".a" ".ln" ".blg" ".bbl" ".elc" ".lof" ".glo" ".idx" ".lot" ".svn/" ".hg/" ".git/" ".bzr/" "CVS/" "_darcs/" "_MTN/" ".fmt" ".tfm" ".class" ".fas" ".lib" ".mem" ".x86f" ".sparcf" ".fasl" ".ufsl" ".fsl" ".dxl" ".pfsl" ".dfsl" ".p64fsl" ".d64fsl" ".dx64fsl" ".lo" ".la" ".gmo" ".mo" ".toc" ".aux" ".cp" ".fn" ".ky" ".pg" ".tp" ".vr" ".cps" ".fns" ".kys" ".pgs" ".tps" ".vrs" ".pyc" ".pyo" "*~" "#")))
- '(desktop-restore-eager 0)
+ '(desktop-restore-eager t)
  '(ecb-layout-window-sizes (quote (("left14" (0.32571428571428573 . 0.7333333333333333) (0.32571428571428573 . 0.24444444444444444)))))
  '(ecb-options-version "2.32")
  '(ecb-tip-of-the-day nil)
@@ -17,6 +17,7 @@
  '(pydbgr-pydbgrtrack-do-tracking-p t)
  '(python-python-command "/usr/bin/ipython")
  '(safe-local-variable-values (quote ((package . clpython) (readtable . py-user-readtable) (Package . CLPYTHON\.TEST) (Package . CLIM-CLX) (Package . CLIM-NULL) (Package . DREI-LISP-SYNTAX) (Package . DREI-CORE) (Package . DREI-ABBREV) (Encoding . latin-1) (Package . CLPYTHON\.PACKAGE) (Package . CL-WHO) (Package . CLPYTHON\.PARSER) (Package . CLIM-DEMO) (Package . CLIM-INTERNALS) (Lowercase . T) (test-case-name . pyflakes) (Package . XREF) (Package . CLOSURE-PROTOCOL) (Readtable . GLISP) (Package . CL-USER) (Package . WS/X11) (Package . RENDERER) (Package . CLPYTHON\.MODULE\.POSIX) (Readtable . PY-USER-READTABLE) (Package . CLPYTHON\.MODULE\.SYS) (Syntax . COMMON-LISP) (Package . CLPYTHON) (Readtable . PY-AST-USER-READTABLE) (Package . dired) (Syntax . Common-Lisp) (Package . HEMLOCK-EXT) (Log . hemlock\.log) (Package . Hemlock-Internals) (Dictionary . /afs/cs/project/clisp/docs/hem/hem) (Package . Hemlock) (Log . /usr/lisp/scribe/hem/hem-docs\.log) (test-case-name . twisted\.test\.test_process) (Syntax . Common-lisp) (Package . XLIB) (Lowercase . Yes) (Syntax . ANSI-Common-Lisp) (Base . 10))))
+ '(temporary-file-directory "/home/paddy/.emacs.d/emacs-temp/")
  '(truncate-partial-width-windows nil)
  '(uniquify-buffer-name-style (\` reverse) nil (uniquify)))
 

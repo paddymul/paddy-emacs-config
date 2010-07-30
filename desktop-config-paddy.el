@@ -11,6 +11,7 @@
 (setq desktop-dir *foo-desktop-dir*)
 (setq desktop-path (list *foo-desktop-dir*))
 (desktop-save-mode 1) ;; Switch on desktop.el
+(setq desktop-lazy-idle-delay 0)
 (setq *foo-desktop-file* (concatenate 'string desktop-dir
                                       "/" 
                                       desktop-base-file-name))
