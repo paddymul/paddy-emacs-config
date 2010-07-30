@@ -19,14 +19,16 @@
 (require 'org-paddy)
 (require 'vc-config)
 ;;;;specific mode configs
-(require 'shell-config-paddy) ;; most important
+;; most important
+(require 'shell-config-paddy) 
 ;(require 'paddy-w3m-config)    -- doesn't work in 23
 
 
 (require 'sql-config-paddy)
 
 (require 'tramp-ansi-config-paddy)
-;(require 'slime-config-paddy)  ;;;;; very likely to fial
+(require 'slime-config-paddy) 
+ ;;;;; very likely to fial
 
 
 

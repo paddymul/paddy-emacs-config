@@ -25,7 +25,7 @@
 
 (when
     (load
-     (expand-file-name "~/.emacs.d/elpa/package.el"))
+     (expand-file-name "~/.emacs.d/vendor/package-el/package.el"))
   (package-initialize))
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/"))
