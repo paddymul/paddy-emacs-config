@@ -1,5 +1,5 @@
 
-(when nil 
+
 (defun ediff-revision (&optional file startup-hooks)
   "Run Ediff by comparing versions of a file.
 The file is an optional FILE argument or the file entered at the prompt.
@@ -37,14 +37,10 @@ Uses `vc.el' or `rcs.el' depending on `ediff-version-control-package'."
      rev1 rev2 startup-hooks)
     ))
 
-(let (rev1
-    (funcall
-     (intern (format "ediff-%S-internal" ediff-version-control-package))
-     rev1 rev2 startup-hooks)))
-
+(require 'ediff-vers)
 (defun paddy-diff-master ()
   (interactive)
-  (ediff-vc-internal "" "master")))
+  (ediff-vc-internal "" "master"))
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq ediff-split-window-function 'split-window-horizontally)
 

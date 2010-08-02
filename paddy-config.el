@@ -15,9 +15,10 @@
 (require 'py-config-paddy)
 
 ;(/ 1 0)
-(require 'diff-config)
+
 (require 'org-paddy)
 (require 'vc-config)
+(require 'diff-config)
 ;;;;specific mode configs
 ;; most important
 (require 'shell-config-paddy) 
