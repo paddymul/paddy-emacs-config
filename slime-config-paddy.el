@@ -23,6 +23,7 @@
 
 ;(add-to-list 'load-path 
 ;             (expand-file-name "~/.emacs.d/vendor/swank-clojure"))
+
 (setq swank-clojure-jar-home "/opt/jars")
 (setq swank-clojure-deps (list 
                           "/opt/jars/swank-clojure.jar"
@@ -59,5 +60,5 @@
 ;(require 'slime)
 ;(slime-setup) 
 
-
+(setq slime-protocol-version 'ignore) 
 (provide 'slime-config-paddy)
