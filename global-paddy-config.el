@@ -69,4 +69,8 @@
 (load-expand "~/.emacs.d/vendor/random/display-buffer-for-widescreen.el")
 (require 'display-buffer-for-wide-screen)
 ;(global-linum-mode)
+(defun paddy-put-buffer-filename-in-killring ()
+  (interactive)
+  (kill-new buffer-file-name))
+
 (provide 'global-paddy-config)
