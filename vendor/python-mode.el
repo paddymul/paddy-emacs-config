@@ -1269,8 +1269,8 @@ py-beep-if-tab-change\t\tring the bell if `tab-width' is changed"
 
   ;;
   (set-syntax-table py-mode-syntax-table)
-  (add-hook (make-local-hook 'font-lock-mode-hook)  
-	    'py-font-lock-mode-hook nil t)           
+  (add-hook  'font-lock-mode-hook
+	    'py-font-lock-mode-hook nil t)
 
   (setq major-mode              'python-mode
         mode-name               "Python"

@@ -204,12 +204,13 @@ Perhaps use text from LINE-ERR-INFO-LIST to enhance highlighting."
 ;;; for some reason this eventually makes python-mode really slow after a while
 (remove-hook 'python-mode-hook 'wisent-python-default-setup)
 
-;(load-expand "~/.emacs.d/vendor/ipython.el")
+(load-expand "~/.emacs.d/vendor/ipython.el")
 (setq ipython-command "/usr/bin/ipython") ;/Library/Frameworks/Python.framework/Versions/2.6/bin/ipython")
 (setq py-python-command-args '("-pylab" "-colors" "LightBG"))
-;(setq py-python-command-args '(""))
+(setq py-python-command-args '(""))
 (require 'python-mode)
 (require 'ipython)
+;(unload-feature 'ipython t)
 (add-to-list 'auto-mode-alist '("\\.egg\\'" . archive-mode))
 
 ;(add-hook 'find-file-hook 'flymake-find-file-hook)
@@ -220,3 +221,4 @@ Perhaps use text from LINE-ERR-INFO-LIST to enhance highlighting."
 
 (provide 'py-config-paddy)
 
+;; 

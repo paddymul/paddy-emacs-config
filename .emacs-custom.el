@@ -10,6 +10,7 @@
  '(ecb-options-version "2.32")
  '(ecb-tip-of-the-day nil)
  '(erc-ignore-list (quote ("'(\"*** .* has joined channel\" \"*** .* Connection reset by peer\" \"*** has quit:\")" "\"*** .* has joined channel\"" "\"*** .* ")))
+ '(erc-nickserv-identify-mode (quote autodetect))
  '(flymake-gui-warnings-enabled nil)
  '(ipython-command "/usr/bin/ipython")
  '(py-python-command "/usr/bin/ipython")

@@ -5,15 +5,25 @@
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
 
+(defun buffer-exists (buff-name)
+  (find buff-name (mapcar 'buffer-name (buffer-list)) :test 'equal))
+
 (defun prompt-for-shell-name (shell-name)
   (interactive "s what do you want to name your new shell? ")
-  (switch-to-buffer "*shell*")
-  (rename-buffer "temp-shell-*******")
-  (shell)
-  (rename-buffer shell-name)
-  (switch-to-buffer "temp-shell-*******")
-  (rename-buffer "*shell*")
-  (switch-to-buffer shell-name))
+  (shell-with-name shell-name))
+(defun shell-with-name (shell-name)
+  "we only want to run this if both buffers exist"
+  (if (and (buffer-exists "*shell*")
+           (not (buffer-exists shell-name)))
+      (progn
+        (switch-to-buffer "*shell*")
+        (rename-buffer "temp-shell-*******")
+        (shell)
+        (rename-buffer shell-name)
+        (switch-to-buffer "temp-shell-*******")
+        (rename-buffer "*shell*")
+        (switch-to-buffer shell-name))))
+
 
 
 (defun paddy-shell-previous-prompt() 
@@ -33,6 +43,28 @@
   (if (string-equal (buffer-name) "*shell*")
         (command-execute 'prompt-for-shell-name)
       (shell)))
+
+(defun perma-sh ()
+  (interactive)
+  (if (not (buffer-exists "perma-sh"))
+      (progn
+        (compile "cd ~/permalink ; while [ 1 -lt 5 ]; do . env.sh ; python permalink/manage.py  runserver 0.0.0.0:8000 ; sleep 5; done" t)
+        (switch-to-buffer "*compilation*")
+        (rename-buffer "perma-sh")
+        (bury-buffer))))
+
+(defun dumb-sh ()
+  (interactive)
+  (if (not (buffer-exists "dumb-sh"))
+      (progn
+        (compile "cd ~/permalink ; while [ 1 -lt 5 ]; do  . env.sh ; python pp/proxy/dumbsite/manage.py  runserver 0.0.0.0:8003 ; sleep 5; done" t)
+        (switch-to-buffer "*compilation*")
+        (rename-buffer "dumb-sh")
+        (bury-buffer)
+        )))
+
+
+
 
 (add-hook 'shell-mode-hook 
    '(lambda ()
@@ -86,5 +118,8 @@
   (html-mode)
   (shell-command (format "curl --stderr /dev/null %s" url) (current-buffer)))
 
+(shell)
+(perma-sh)
+(dumb-sh)
 
 (provide 'shell-config-paddy)

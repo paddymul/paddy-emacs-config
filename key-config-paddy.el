@@ -121,7 +121,8 @@
 ;--anything
 (global-set-key (kbd "s-a") 'anything)
 
-(global-set-key (kbd "s-\\") 'anything)
+(global-unset-key (kbd "s-\\") )
+(global-set-key (kbd "s-`") 'anything)
 (global-set-key (kbd "s-x") 'paddy-M-x-anything)
 (global-set-key (kbd "M-x") 'execute-extended-command)
 (global-set-key (kbd "M-y") 'anything-show-kill-ring)
