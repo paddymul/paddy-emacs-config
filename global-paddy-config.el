@@ -10,7 +10,9 @@
 
 (progn
 (defun emacs-temp-join (extra-dir-name)
-  (let ((temp-dir-name (concat   "/home/paddy/.emacs.d/emacs-temp/" extra-dir-name)))
+  (let ((temp-dir-name (concat   
+			(expand-file-name "~/.emacs.d/emacs-temp")
+                        extra-dir-name)))
     (make-directory temp-dir-name t)
     temp-dir-name))
 (defvar autosave-dir
