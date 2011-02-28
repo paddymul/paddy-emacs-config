@@ -199,6 +199,18 @@ Perhaps use text from LINE-ERR-INFO-LIST to enhance highlighting."
              ;(ropemacs-mode)
              (flymake-mode)))
 
+(defun paddy-py-grep-find ()
+  (interactive)
+  (setf old-grep-find-command grep-find-command)
+
+  (grep-apply-setting 
+   'grep-find-command 
+   "find . -type f  | grep 'py$' | xargs  -e grep -nH -e ")
+  (unwind-protect 
+      (call-interactively 'grep-find)
+    (progn
+      (grep-apply-setting 'grep-find-command old-grep-find-command )
+      (message "my unwind-protect block "))))
 
 
 ;;; for some reason this eventually makes python-mode really slow after a while
