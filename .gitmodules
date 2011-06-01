@@ -16,3 +16,6 @@
 [submodule "vendor/package-el"]
 	path = vendor/package-el
 	url = git://github.com/technomancy/package.el.git
+[submodule "vendor/emacs-jabber"]
+	path = vendor/emacs-jabber
+	url = git://github.com/demyanrogozhin/emacs-jabber.git
