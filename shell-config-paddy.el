@@ -63,6 +63,26 @@
         (bury-buffer)
         )))
 
+(defun swf-test-sh ()
+  (interactive)
+  (if (not (buffer-exists "swf-test-sh"))
+      (progn
+        (compile "cd ~/permalink/lib/swf_rewrite/tests/test_server; while [ 1 -lt 5 ];do python manage.py  runserver 0.0.0.0:8002 ; sleep 1; done" t)
+        (switch-to-buffer "*compilation*")
+        (rename-buffer "swf-test-sh")
+        (bury-buffer)
+        )))
+
+(defun ret3-sh ()
+  (interactive)
+  (if (not (buffer-exists "ret3-sh"))
+      (progn
+        (compile "cd ~/permalink ; while [ 1 -lt 5 ]; do . env.sh ; python pp/retrieval_record/manage.py  runserver 0.0.0.0:8001 ; sleep 5; done" t)
+        (switch-to-buffer "*compilation*")
+        (rename-buffer "ret3-sh")
+        (bury-buffer))))
+
+(ret3-sh)
 
 
 
@@ -116,10 +136,21 @@
   (interactive "s what url do you want to get: ")
   (switch-to-buffer url)
   (html-mode)
-  (shell-command (format "curl --stderr /dev/null %s" url) (current-buffer)))
+  (shell-command (format "curl --stderr /dev/null %s " url) (current-buffer)))
+
+(defun paddy-tidy ()
+  (interactive) 
+  (shell-command-on-region 1 (buffer-size) "tidy -q -f /dev/null -i" t t))
+
+(defun paddy-js-tidy ()
+  (interactive) 
+  (shell-command-on-region 1 (buffer-size) "py-js-beautify.py" t t)
+  (js2-mode))
+
 
 (shell)
 (perma-sh)
 (dumb-sh)
+(swf-test-sh)
 
 (provide 'shell-config-paddy)

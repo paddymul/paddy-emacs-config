@@ -75,4 +75,14 @@
   (interactive)
   (kill-new buffer-file-name))
 
+
+;
+;
+
 (provide 'global-paddy-config)
+;
+
+
+
+
+    (load  "/home/paddy/.emacs.d/vendor/haskell-mode/haskell-site-file.el")

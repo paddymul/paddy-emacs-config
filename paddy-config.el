@@ -16,7 +16,7 @@
 
 ;(/ 1 0)
 
-(require 'org-paddy)
+
 (require 'vc-config)
 (require 'diff-config)
 ;;;;specific mode configs
@@ -37,6 +37,16 @@
 (require 'desktop-config-paddy) ;;;;; down here because it takes the longest to load
 (require 'font-config-paddy) ;; likely to fail, slow
 ;(require 'paddy-html-config)
+(require 'org-paddy)
+
+
+
+
+(add-to-list 'load-path "/home/paddy/.emacs.d/vendor/jabber-el-sf/emacs-jabber-0.8.0")
+(require 'jabber-autoloads)
+(require 'paddy-secrets)
+(jabber-connect "paddy@perpetually.com")
+
 (provide 'paddy-config)
 
 
