@@ -199,6 +199,15 @@ Perhaps use text from LINE-ERR-INFO-LIST to enhance highlighting."
              ;(ropemacs-mode)
              (flymake-mode)))
 
+(defun flymake-can-syntax-check-file (file-name)
+  "Determine whether we can syntax check FILE-NAME.
+Return nil if we cannot, non-nil if we can."
+  (and (stringp file-name) ;; without this fix, running
+       ;; py-execute-buffer causes an error because the tempfile of
+       ;; the executeable python buffer has no filename
+  (if (flymake-get-init-function file-name) t nil)))
+
+
 (defun paddy-py-grep-find ()
   (interactive)
   (setf old-grep-find-command grep-find-command)
