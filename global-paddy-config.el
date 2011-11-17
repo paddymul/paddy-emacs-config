@@ -5,8 +5,12 @@
 (modify-syntax-entry ?\_ "w"  c-mode-syntax-table)
 (transient-mark-mode -5)
 (put 'narrow-to-region 'disabled nil)
+
+
 (global-font-lock-mode t)
 (setq visible-bell t) ;; No beeping
+(setq redisplay-dont-pause t)
+
 
 (progn
 (defun emacs-temp-join (extra-dir-name)
@@ -68,8 +72,11 @@
   (load-file (expand-file-name filename)))
 
 ;(require 'highlight-current-line)
-(load-expand "~/.emacs.d/vendor/random/display-buffer-for-widescreen.el")
-(require 'display-buffer-for-wide-screen)
+
+
+;;(load-expand "~/.emacs.d/vendor/random/display-buffer-for-widescreen.el")
+
+;(require 'display-buffer-for-wide-screen)
 ;(global-linum-mode)
 (defun paddy-put-buffer-filename-in-killring ()
   (interactive)

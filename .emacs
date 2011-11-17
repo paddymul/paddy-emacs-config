@@ -29,6 +29,7 @@
   (package-initialize))
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/vendor/php-mode"))
 (require 'paddy-config)
 (put 'set-goal-column 'disabled nil)
 

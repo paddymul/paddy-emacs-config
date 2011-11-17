@@ -1,22 +1,22 @@
 
 ;(setenv "PYMACS_PYTHON" "/Library/Frameworks/Python.framework/Versions/Current/bin/python")
-(setenv "PYMACS_PYTHON" "/usr/bin/python")
+;; (setenv "PYMACS_PYTHON" "/usr/bin/python")
 
 
-;(load-expand "~/.emacs.d/vendor/pymacs.el")
-(load-expand "~/.emacs.d/vendor/pymacs/pymacs.el")
-(autoload 'pymacs-apply "pymacs")
-(autoload 'pymacs-call "pymacs")
-(autoload 'pymacs-eval "pymacs" nil t)
-(autoload 'pymacs-exec "pymacs" nil t)
-(autoload 'pymacs-load "pymacs" nil t)
-(pymacs-load "ropemacs" "rope-")
-(setq ropemacs-global-prefix "C-c r") 
-(add-hook 'ropemacs-mode-hook
-	  '(lambda ()
-             (define-key ropemacs-local-keymap (kbd "M-/") 'dabbrev-expand)
-             (define-key ropemacs-local-keymap (kbd "M-,") 'rope-goto-definition)
-             (define-key ropemacs-local-keymap (kbd "M-'") 'rope-code-assist)))
+;; ;(load-expand "~/.emacs.d/vendor/pymacs.el")
+;; (load-expand "~/.emacs.d/vendor/pymacs/pymacs.el")
+;; (autoload 'pymacs-apply "pymacs")
+;; (autoload 'pymacs-call "pymacs")
+;; (autoload 'pymacs-eval "pymacs" nil t)
+;; (autoload 'pymacs-exec "pymacs" nil t)
+;; (autoload 'pymacs-load "pymacs" nil t)
+;; (pymacs-load "ropemacs" "rope-")
+;; (setq ropemacs-global-prefix "C-c r") 
+;; (add-hook 'ropemacs-mode-hook
+;; 	  '(lambda ()
+;;              (define-key ropemacs-local-keymap (kbd "M-/") 'dabbrev-expand)
+;;              (define-key ropemacs-local-keymap (kbd "M-,") 'rope-goto-definition)
+;;              (define-key ropemacs-local-keymap (kbd "M-'") 'rope-code-assist)))
 
 
 
@@ -237,8 +237,8 @@ Return nil if we cannot, non-nil if we can."
 ;(add-hook 'find-file-hook 'flymake-find-file-hook)
 
 ;; utter hack
-(load-file (expand-file-name "~/eltesto/eltesto.el"))
-(load-file (expand-file-name "~/eltesto/py-testing-commands.el"))
+;;(load-file (expand-file-name "~/eltesto/eltesto.el"))
+;;(load-file (expand-file-name "~/eltesto/py-testing-commands.el"))
 
 (provide 'py-config-paddy)
 

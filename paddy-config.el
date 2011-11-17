@@ -8,8 +8,11 @@
 ;;; global configs
 
 (require 'global-paddy-config)
+
 (require 'load-externals-paddy)
 (require 'key-config-paddy)
+
+
 (require 'help-fns-paddy)
 (require 'anything-config-paddy)
 (require 'py-config-paddy)
@@ -39,13 +42,18 @@
 ;(require 'paddy-html-config)
 (require 'org-paddy)
 
+(add-to-list 'load-path "/home/paddy/.emacs.d/vendor/php-mode")
+(require 'php-config-paddy)
 
+(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.mdown$" . markdown-mode))
+;(require 'markdown-mode)
 
 
 (add-to-list 'load-path "/home/paddy/.emacs.d/vendor/jabber-el-sf/emacs-jabber-0.8.0")
 (require 'jabber-autoloads)
-(require 'paddy-secrets)
-(jabber-connect "paddy@perpetually.com")
+;(require 'paddy-secrets)
+;(jabber-connect "paddy@perpetually.com")
 
 (provide 'paddy-config)
 

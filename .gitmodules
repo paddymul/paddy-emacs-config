@@ -19,3 +19,6 @@
 [submodule "vendor/emacs-jabber"]
 	path = vendor/emacs-jabber
 	url = git://github.com/demyanrogozhin/emacs-jabber.git
+[submodule "vendor/php-mode"]
+	path = vendor/php-mode
+	url = git://github.com/ejmr/php-mode.git

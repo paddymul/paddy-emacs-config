@@ -73,6 +73,7 @@
         (bury-buffer)
         )))
 
+
 (defun ret3-sh ()
   (interactive)
   (if (not (buffer-exists "ret3-sh"))
@@ -82,7 +83,27 @@
         (rename-buffer "ret3-sh")
         (bury-buffer))))
 
-(ret3-sh)
+(defun idb-ret3-sh ()
+  (interactive)
+  (if (not (buffer-exists "idb-ret3-sh"))
+      (progn
+        (compile "cd ~/permalink ; while [ 1 -lt 5 ]; do . env.sh ; python pp/idb_retrieval_record/manage.py  runserver 0.0.0.0:8103 ; sleep 5; done" t)
+        (switch-to-buffer "*compilation*")
+        (rename-buffer "idb-ret3-sh")
+        (bury-buffer))))
+
+
+
+(defun solr-sh ()
+  (interactive)
+  (if (not (buffer-exists "solr-sh"))
+      (progn
+        (compile "cd ~/permalink ;  . env.sh ;  nohup ppy_solr start   ; " t)
+        (switch-to-buffer "*compilation*")
+        (rename-buffer "solr-sh")
+        (bury-buffer))))
+
+
 
 
 
@@ -148,9 +169,9 @@
   (js2-mode))
 
 
-(shell)
-(perma-sh)
-(dumb-sh)
-(swf-test-sh)
+;;(shell)
+;;(perma-sh)                              
+;;(dumb-sh)
+;;(swf-test-sh)
 
 (provide 'shell-config-paddy)

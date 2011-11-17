@@ -61,7 +61,7 @@
 ;(global-set-key "\M-'" 'jde-complete-in-line)
 ;(global-set-key "\M-\"" 'jde-complete-menu)
 
-
+(global-set-key (kbd "M-\\") 'delete-horizontal-space)
 
 (global-unset-key (kbd "C-\\")) ;; I never toggle input method
 (global-unset-key (kbd "M-o"))  ;; I never want to set-face-font but I often accidently type this when I want s-o
@@ -101,6 +101,14 @@
 (global-unset-key '[C-S-tab])
 
 
+(defun my-switch-to-buffer (buffer-or-name)
+  (interactive
+   (list (read-buffer-to-switch "Switch to buffer: ") ))
+  (switch-to-buffer buffer-or-name t t))
+ 
+(global-set-key (kbd "C-x b") 'my-switch-to-buffer)
+
+
 (global-set-key (kbd "s-g") 'find-grep)
 (global-set-key (kbd "s-w") 'delete-window)
 (global-set-key (kbd "s-o") 'other-window)
@@ -109,9 +117,12 @@
 (global-set-key (kbd "s-s") 'split-window-horizontally)
 (global-set-key (kbd "s-=") 'balance-windows)
 (global-set-key (kbd "s-S") 'split-window-vertically)
+(global-set-key (kbd "s-3") 'split-window-horizontally)
+(global-set-key (kbd "s-2") 'split-window-vertically)
 
-(global-set-key (kbd "s-'") 'new-shell)
-
+;;(global-set-key (kbd "s-'") 'new-shell)
+(global-unset-key (kbd "s-'"))
+(global-set-key (kbd "s-;") 'new-shell)
 
 
 (global-set-key "\C-x\C-F" 'find-file)
@@ -121,8 +132,8 @@
 ;--anything
 (global-set-key (kbd "s-a") 'anything)
 
-(global-unset-key (kbd "s-\\") )
-(global-set-key (kbd "s-`") 'anything)
+(global-set-key (kbd "s-\\") 'anything)
+;(global-set-key (kbd "s-`") 'anything)
 (global-set-key (kbd "s-x") 'paddy-M-x-anything)
 (global-set-key (kbd "M-x") 'execute-extended-command)
 (global-set-key (kbd "M-y") 'anything-show-kill-ring)
